@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+th {
+  background-color: royalblue;
+  color: white;
+}
+th,td {
+  padding: 12px 15px;
+  text-align: left;
+}
+td{
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+}
