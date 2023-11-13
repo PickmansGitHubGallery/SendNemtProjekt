@@ -1,0 +1,43 @@
+extends layout
+
+block content 
+  head 
+    link(rel="stylesheet" type="text/css" href="/style.css")
+  body
+    h1 Send Pakke
+    //img(src="/images/sendpakkebillede.png", alt="Example Image")
+    br
+    form(action="/sendpakke" method="post")
+      label.afsender(for="sName") Afsender Navn:
+      input(type="text" name="sName" required)
+      br
+      label(for="sAdress") Afsender Adresse:
+      input(type="text" name="sAdress" required)
+      br
+      label(for="sEmail") Afsender Email:
+      input(type="email" name="sEmail" required)
+      br
+      label(for="sPhone") Afsender Telefon nummer:
+      input(type="text" name="sPhone" required)
+      br
+
+      hr.form-line
+
+      br
+
+      label.modtager(for="rName") Modtagers Navn:
+      input(type="text" name="rName" required)
+      br
+      label(for="rAdress") Modtagers Adresse:
+      input(type="text" name="rAdress" required)
+      br
+      label(for="rEmail") Modatagers Email:
+      input(type="email" name="rEmail" required)
+      br
+      label(for="rPhone") Modtager Telefon nummer:
+      input(type="text" name="rPhone" required)
+      br
+      label(for="rAdress") Modtagers Adresse:
+      input(type="text" name="rAdress" required)
+      br
+      input(type="submit" value="Send Den Pakke!")
