@@ -7,12 +7,12 @@ block content
     h1 Send Pakke
     //img(src="/images/sendpakkebillede.png", alt="Example Image")
     br
-    form(action="/sendpakke" method="post")
+    form(action="/sendPakke" method="post")
       label.afsender(for="sName") Afsender Navn:
       input(type="text" name="sName" required)
       br
       label(for="sAdress") Afsender Adresse:
-      input(type="text" name="sAdress" required)
+      input(type="text" name="sAddress" required)
       br
       label(for="sEmail") Afsender Email:
       input(type="email" name="sEmail" required)
@@ -29,7 +29,7 @@ block content
       input(type="text" name="rName" required)
       br
       label(for="rAdress") Modtagers Adresse:
-      input(type="text" name="rAdress" required)
+      input(type="text" name="rAddress" required)
       br
       label(for="rEmail") Modatagers Email:
       input(type="email" name="rEmail" required)
@@ -37,7 +37,10 @@ block content
       label(for="rPhone") Modtager Telefon nummer:
       input(type="text" name="rPhone" required)
       br
-      label(for="rAdress") Modtagers Adresse:
-      input(type="text" name="rAdress" required)
+      label(for="size") længe i cm:
+      input(type="text" name="size" required)
+      br
+      label(for="weight") vægt i kg:
+      input(type="text" name="weight" required)
       br
       input(type="submit" value="Send Den Pakke!")

@@ -1,6 +1,8 @@
 const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('SendNemtDataBase.db');
+const path = require('path');
+const dbPath = path.join(__dirname,'database','SendNemtDataBase.db');
+const db = new sqlite3.Database(dbPath);
 
 function getCurrentTimestamp() {
     const currentDateTime = new Date();
@@ -10,10 +12,12 @@ function getCurrentTimestamp() {
   
     return formattedDateTime;
   }
+  
+function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone,size,weight) {
 
-function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight) {
+  
   return new Promise((resolve, reject) => {
-    db.run('INSERT INTO Package (sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, createdAt, status, updatedAt, size, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, getCurrentTimestamp(), 'SENT', getCurrentTimestamp(), size, weight ], function (err) {
+    db.run('INSERT INTO Package (sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, createdAt, status, updatedAt,size,weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)', [sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, getCurrentTimestamp(), 'SENT', getCurrentTimestamp(),size,weight ], function (err) {
       if (err) {
         reject(err);
       } else {
@@ -22,7 +26,6 @@ function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail,
     });
   });
 }
-
 module.exports = {
-  insertData
+  insertPackage
 };
