@@ -4,4 +4,25 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    header 
+      .buttonContainer
+        button(type='button') Opret Bruger
+        button(type='button') Log Ind
+      .imageContainer
+        img(src='images/sendpakkebillede.png', alt='Image Alt Text')
+      
+      nav
+      ul
+        li
+          a(href='#') Spor Pakke
+        li
+          a(href='#') Send Pakke
+        li
+          a(href='#') Mine Pakker 
+        li
+          a(href='#') Om
+
+  block content
+
+  footer 
+    p Copyright © 2023 Team Jakob
