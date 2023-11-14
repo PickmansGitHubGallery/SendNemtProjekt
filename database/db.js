@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3');
 
 const path = require('path');
-const dbPath = path.join(__dirname,'database','SendNemtDataBase.db');
+const dbPath = path.join(__dirname,'SendNemtDataBase.db');
 const db = new sqlite3.Database(dbPath);
 
 function getCurrentTimestamp() {
@@ -11,6 +11,19 @@ function getCurrentTimestamp() {
     const formattedDateTime = currentDateTime.toISOString().replace('T', ' ').slice(0, 19);
   
     return formattedDateTime;
+  }
+
+
+  function getAllPackages(email) {
+    return new Promise((resolve, reject) => {
+      db.get('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(packages);
+        }
+      });
+    });
   }
   
 function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone,size,weight) {
