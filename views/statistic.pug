@@ -7,11 +7,11 @@ block content
         tr
             th Pakke ID
             th Afsender's Navn
-            th Afsender's Adresse 
+            th Afsender's Addresse 
             th Afsender's Email 
             th Afsender's Telefon 
             th Modtager's Navn
-            th Modtager's Adresse
+            th Modtager's Addresse
             th Modtager's Email
             th Modtager's Telefon
             th Dato for oprettelse
@@ -19,3 +19,19 @@ block content
             th Sidst opdateret 
             th Størrelse 
             th Vægt
+            each package in packages
+                tr
+                    td= package.ID
+                    td= package.sName
+                    td= package.sAddress 
+                    td= package.sEmail
+                    td= package.sPhone
+                    td= package.rName
+                    td= package.rAddress
+                    td= package.rEmail
+                    td= package.rPhone
+                    td= package.createdAt 
+                    td= package.status
+                    td= package.updatedAt
+                    td= package.size
+                    td= package.weight

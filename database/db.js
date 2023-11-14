@@ -17,7 +17,25 @@ function getCurrentTimestamp() {
     const formattedDateTime = currentDateTime.toISOString().replace('T', ' ').slice(0, 19);
   
     return formattedDateTime;
+
 }
+
+  
+
+
+  function getAllPackages(email) {
+    return new Promise((resolve, reject) => {
+      db.get('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(packages);
+        }
+      });
+    });
+  }
+  
+
 function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone,size,weight) {
   return new Promise((resolve, reject) => {
     db.run('INSERT INTO Package (sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, createdAt, status, updatedAt,size,weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)', [sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, getCurrentTimestamp(), 'SENT', getCurrentTimestamp(),size,weight ], function (err) {
