@@ -1,0 +1,15 @@
+extends layout
+
+block content 
+    head 
+        link(rel="stylesheet" type="text/css" href="/style.css")
+    body
+        h1 Tak! Din pakke er oprettet
+        br
+        h2 Du kan nu se din pakke på pakke oversigten
+        br
+        img(src="/images/checkmark.jpg")
+        br
+        a(href="/minside") Pakke Oversigt
+        br
+        h2 Dit pakke ID er #{packageID} skriv dette på din pakke og aflever ved nærmeste SendNemt butik
