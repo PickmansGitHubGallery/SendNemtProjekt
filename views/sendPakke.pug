@@ -1,46 +1,54 @@
 extends layout
 
 block content 
-  head 
-    link(rel="stylesheet" type="text/css" href="/style.css")
-  body
-    h1 Send Pakke
+
+  body.sendpakke
+
+
+    //h1 Send Pakke
     //img(src="/images/sendpakkebillede.png", alt="Example Image")
     br
-    form(action="/sendPakke" method="post")
-      label.afsender(for="sName") Afsender Navn:
-      input(type="text" name="sName" required)
-      br
-      label(for="sAdress") Afsender Adresse:
-      input(type="text" name="sAddress" required)
-      br
-      label(for="sEmail") Afsender Email:
-      input(type="email" name="sEmail" required)
-      br
-      label(for="sPhone") Afsender Telefon nummer:
-      input(type="text" name="sPhone" required)
-      br
+    .container
+      form(action="/sendPakke" method="post")
+        label.afsender(for="sName") Afsender Navn:
+        input(type="text" name="sName" required)
+        br
+        label(for="sAdress") Afsender Adresse:
+        input(type="text" name="sAddress" required)
+        br
+        label(for="sEmail") Afsender Email:
+        input(type="email" name="sEmail" required)
+        br
+        label(for="sPhone") Afsender Telefon nummer:
+        input(type="text" name="sPhone" required)
+        br
 
-      hr.form-line
+        hr.form-line
 
-      br
+        br
 
-      label.modtager(for="rName") Modtagers Navn:
-      input(type="text" name="rName" required)
-      br
-      label(for="rAdress") Modtagers Adresse:
-      input(type="text" name="rAddress" required)
-      br
-      label(for="rEmail") Modatagers Email:
-      input(type="email" name="rEmail" required)
-      br
-      label(for="rPhone") Modtager Telefon nummer:
-      input(type="text" name="rPhone" required)
-      br
-      label(for="size") længe i cm:
-      input(type="text" name="size" required)
-      br
-      label(for="weight") vægt i kg:
-      input(type="text" name="weight" required)
-      br
-      input(type="submit" value="Send Den Pakke!")
+        label.modtager(for="rName") Modtagers Navn:
+        input(type="text" name="rName" required)
+        br
+        label(for="rAdress") Modtagers Adresse:
+        input(type="text" name="rAddress" required)
+        br
+        label(for="rEmail") Modatagers Email:
+        input(type="email" name="rEmail" required)
+        br
+        label(for="rPhone") Modtager Telefon nummer:
+        input(type="text" name="rPhone" required)
+        br
+
+        hr.form-line
+
+        br 
+
+        label(for="size") længe i cm:
+        input(type="text" name="size" required)
+        br
+        label(for="weight") vægt i kg:
+        input(type="text" name="weight" required)
+        br
+        input(type="submit" value="Send Den Pakke!")
+    
