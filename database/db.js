@@ -25,7 +25,7 @@ function getCurrentTimestamp() {
 
   function getAllPackages(email) {
     return new Promise((resolve, reject) => {
-      db.get('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
+      db.all('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
         if (err) {
           reject(err);
         } else {
@@ -105,5 +105,6 @@ module.exports = {
   insertPackage,
   createUser,
   authenticateUser,
-  updateUserDetails
+  updateUserDetails,
+  getAllPackages
 };
