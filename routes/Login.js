@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    db.authenticateUser(res.body.email, res.body.password)
+    console.log("her" + req.body.email);
+    db.authenticateUser(req.body.email, req.body.password)
         .then((userData) => {
             console.log("Du logger ind", userData)
         })
