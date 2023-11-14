@@ -1,0 +1,16 @@
+extends layout
+
+block content 
+  head 
+    link(rel="stylesheet" type="text/css" href="/style.css")
+  body
+    h1 Login 
+    br
+    form(action="/Login" method="post")
+      label(for="bNavn") Brugernavn:
+      input(type="text" name="bNavn" required)
+      label(for="password") Password:
+      input(type="text" name="password" required)
+      br
+      br
+      input(type="submit" value="login")
