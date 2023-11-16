@@ -2,7 +2,26 @@ extends layout
 
 block content
     h1= title
-    p Her kan du se en oversigt over dine pakker, både sendt og modtaget.
+    
+    h3 Mine oplysninger
+
+    form(action="/statistic" method="post")
+        label(for="email") Email:
+        input(type="text" name="email" value= user.email required)
+        label(for="name") Navn:
+        input(type="text" name="name" value= user.name required)
+        label(for="address") Addresse:
+        input(type="text" name="address" value= user.address required)
+        label(for="phone") Telefon:
+        input(type="text" name="phone" value= user.phone required)
+        br
+        br
+        input(type="submit" value="Gem oplysninger")
+
+    h3 Mine pakker
+    button Sendte pakker
+    button Modtagne pakker
+    button Alle pakker
     table
         tr
             th Pakke ID

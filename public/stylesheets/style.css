@@ -95,6 +95,10 @@ footer {
 h1{
   text-align: center;
 }
+
+h3{
+  text-align: center;
+}
 form{
   background-color: #fff;
   padding: 20px;
@@ -140,7 +144,7 @@ input[type="submit"]:hover {
   margin-bottom: 16px; /* Adjust the margin to separate the line from the next element */
 }
 th {
-  background-color: royalblue;
+  background-color: darkgreen;
   color: white;
 }
 th,td {
@@ -148,7 +152,7 @@ th,td {
   text-align: left;
 }
 td{
-  background-color: grey;
-  color: white;
+  background-color: lightgray;
+  color: black;
   font-weight: bold;
 }

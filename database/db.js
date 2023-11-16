@@ -20,7 +20,17 @@ function getCurrentTimestamp() {
 
 }
 
-  
+  function getUserInfo(email) {
+    return new Promise((resolve, reject) => {
+      db.get('SELECT * FROM User WHERE email = ?', [email], async function (err, userData) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(userData);
+        }
+      });
+    });
+  }
 
 
   function getAllPackages(email) {
@@ -106,5 +116,6 @@ module.exports = {
   createUser,
   authenticateUser,
   updateUserDetails,
-  getAllPackages
+  getAllPackages,
+  getUserInfo
 };
