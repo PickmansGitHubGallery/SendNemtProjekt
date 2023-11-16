@@ -3,13 +3,13 @@ extends layout
 block content
     h1= title
     h3 Mine oplysninger
-    .containerStatistic
-        form(action="/statistic" method="post")
+    .containerMinside
+        form(action="/minside" method="post")
             label(for="email") Email:
             input(type="text" name="email" value= user.email required readonly)
             label(for="name") Navn:
             input(type="text" name="name" value= user.name required)
-            label(for="address") Addresse:
+            label(for="address") Adresse:
             input(type="text" name="address" value= user.address required)
             label(for="phone") Telefon:
             input(type="text" name="phone" value= user.phone required)

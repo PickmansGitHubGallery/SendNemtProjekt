@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     user = userData;
     db.getAllPackages(user.email)
   .then((packages) => {
-    res.render('statistic', { title: 'Min side', packages: packages, user: user});
+    res.render('minside', { title: 'Min side', packages: packages, user: user});
   })
   .catch((err) => {
     console.error("Du er ikke logget ind", err.message)
