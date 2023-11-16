@@ -19,11 +19,7 @@ function getCurrentTimestamp() {
     return formattedDateTime;
 
 }
-
-  
-
-
-  function getAllPackages(email) {
+function getAllPackages(email) {
     return new Promise((resolve, reject) => {
       db.all('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
         if (err) {
@@ -34,8 +30,6 @@ function getCurrentTimestamp() {
       });
     });
   }
-  
-
 function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone,size,weight) {
   return new Promise((resolve, reject) => {
     db.run('INSERT INTO Package (sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, createdAt, status, updatedAt,size,weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)', [sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, getCurrentTimestamp(), 'SENT', getCurrentTimestamp(),size,weight ], function (err) {
@@ -74,10 +68,6 @@ function authenticateUser(email, password) {
       // Hash the entered password
       const enteredPasswordHash = hashPassword(password);
 
-      // Log the hashed passwords for debugging
-      console.log('Entered Password Hash:', enteredPasswordHash);
-      console.log('Database Password Hash:', userData.passwordHash);
-
       // Compare the hashed entered password with the hashed password from the database
       if (enteredPasswordHash === userData.passwordHash) {
         resolve(userData); // Resolve with the user data
@@ -101,10 +91,45 @@ function updateUserDetails(email, newName, newPhone, newAddress) {
     );
   });
 }
+function authenticateToken (token)
+{
+  return new Promise((resolve, reject) => {
+    db.get('SELECT * FROM User WHERE token = ?', [token], async function (err, userData) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      if (!userData) {
+        reject(new Error('User not found'));
+        return;
+      }
+      resolve(userData);
+  })
+  });
+}
+
+function setAuthenticationToken (email)
+{
+  let tokenhash = hashPassword(email);
+  console.log("Vi er i db.setAuthenticationToken"+tokenhash);
+  return new Promise((resolve, reject) => {
+    db.run('UPDATE User SET token = ? WHERE email = ?',[tokenhash, email],
+      function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(tokenhash); 
+        }
+      }
+    );
+  });
+}
 module.exports = {
   insertPackage,
   createUser,
   authenticateUser,
   updateUserDetails,
-  getAllPackages
+  getAllPackages, 
+  authenticateToken,
+  setAuthenticationToken
 };
