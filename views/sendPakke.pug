@@ -1,100 +1,35 @@
 extends layout
 
 block content 
-
-  body.sendpakke
-
-
-    //h1 Send Pakke
-    //img(src="/images/sendpakkebillede.png", alt="Example Image")
- 
-    script.
-      function submitAllForms() { 
-        var formData1 = new FormData(document.getElementById('form1'));
-        var formData2 = new FormData(document.getElementById('form2'));
-        var formData3 = new FormData(document.getElementById('form3'));
-        
-        var combinedFormData = new FormData();
-        for (var pair of formData1.entries()) {
-          combinedFormData.append(pair[0], pair[1]);
-        }
-        for (var pair of formData2.entries()) {
-          combinedFormData.append(pair[0], pair[1]);
-        }
-        for (var pair of formData3.entries()) {
-          combinedFormData.append(pair[0], pair[1]);
-        }
-
-        console.log(combinedFormData)
-        fetch('/sendpakke', {
-          method: 'POST',
-          body: combinedFormData
-        })
-        .then(response => {
-          if (response.ok) {
-            return response.text(); // or response.json() if expecting JSON
-          }
-          throw new Error('Network response was not ok.');
-        })
-        .then(data => {
-          console.log('Success:', data);
-          // Handle success, e.g., show confirmation to the user
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          // Handle errors
-        });
-      }
+  body
+  .content
+    form(action="/sendPakke", method="post" id="sendpakke")
+      .form-columns
+        .column
+          h2 Afsender
+          label(for="sName") Navn
+          input(type="text", id="sName", name="sName")
+          label(for="sEmail") Email
+          input(type="email", id="sEmail", name="sEmail")
+          label(for="sAddress") Adresse
+          input(type="text", id="sAddress", name="sAddress")
+          label(for="sPhone") Telefon
+          input(type="tel", id="sPhone", name="sPhone")
+        .column
+          h2 Modtager
+          label(for="rName") Navn
+          input(type="text", id="rName", name="rName")
+          label(for="rEmail") Email
+          input(type="email", id="rEmail", name="rEmail")
+          label(for="rAddress") Adresse
+          input(type="text", id="rAddress", name="rAddress")
+          label(for="rPhone") Telefon
+          input(type="tel", id="rPhone", name="rPhone")
+        .column
+          h2 Pakke info
+          label(for="size") Længde
+          input(type="text", id="size", name="size")
+          label(for="weight") Vægt
+          input(type="number", id="weight", name="weight")
+      button(type="submit") Send Den Pakke!
       
-    
-    //form(action="/sendPakke" method="post")
-  .forms-container
-    form#form1
-      p Afsender Info
-      label(for="sName") Afsender Navn:
-      input(type="text" name="sName" required)
-      br
-      label(for="sAdress") Afsender Adresse:
-      input(type="text" name="sAddress" required)
-      br
-      label(for="sEmail") Afsender Email:
-      input(type="email" name="sEmail" required)
-      br
-      label(for="sPhone") Afsender Telefon nummer:
-      input(type="text" name="sPhone" required)
-      br
-    
-    form#form2
-      p Modtager Info
-      label(for="rName") Modtagers Navn:
-      input(type="text" name="rName" required)
-      br
-      label(for="rAdress") Modtagers Adresse:
-      input(type="text" name="rAddress" required)
-      br
-      label(for="rEmail") Modatagers Email:
-      input(type="email" name="rEmail" required)
-      br
-      label(for="rPhone") Modtager Telefon nummer:
-      input(type="text" name="rPhone" required)
-      br
-
-    form#form3.box3
-      p Pakke Info
-      label(for="size") længe i cm:
-      input(type="text" name="size" required)
-      br
-      label(for="weight") vægt i kg:
-      input(type="text" name="weight" required)
-      br
-      //input(type="submit" value="Send Den Pakke!!!!!")
-
-    
-      button(type='button' class='sendpakkeknap' onclick='submitAllForms()') Send Den Pakke!
-       
-      
-      
-    
-
-
-    

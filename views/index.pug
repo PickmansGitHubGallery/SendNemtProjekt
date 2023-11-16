@@ -1,6 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p Her skal der være en masse ting!!
+  .forside
+    div.forsidecontainer
+        .boxed-paragraph
+          p Send en pakke!
+          a(href='/sendPakke')
+            img(src='images/sendnemt.png', alt='Image Alt Text' class="clicktosend")
+        .boxed-paragraph
+          p Hvor er min Pakke?
+          form(action="/", method="post")
+          input(type="text", name="pakkeNR", placeholder="Indtast tracking nummer" )
+          input(type="submit" value="Find pakke")

@@ -6,36 +6,46 @@ html
     
   body
     header 
-      .buttonContainer
-        button(onclick="redirect()") Opret Bruger
+      img.company-logo(src='images/sendnemt.png', alt='Company Logo')
 
+      .buttonContainer
+        button(onclick="rdCreateUser()") Opret Bruger
         script.
-          function redirect() {
+          function rdCreateUser() {
             window.location.href = '/CreateUser';
           }
-          
-        button(onclick="redirect2()") Log Ind
-
+        button(onclick="rdLogin()") Log Ind
         script.
-          function redirect2() {
+          function rdLogin() {
             window.location.href = '/Login';
           }
-      .imageContainer
-
-        img(src='images/sendnemt.png', alt='Image Alt Text')
-
       nav
       ul
         li
-          a(href='#') Spor Pakke
+          button(onclick="rdForside()") Forside
+          script.
+            function rdForside() {
+              window.location.href = '/';
+            }
         li
-          a(href='#') Send Pakke
+          button(onclick="rdTrack()") Spor Pakke
+          script.
+            function rdTrack() {
+              window.location.href = '/track';
+            }
         li
-          a(href='#') Min side 
+          button(onclick="rdMinside()") Min Side
+          script.
+            function rdMinside() {
+              window.location.href = '/minside';
+            }
+          
         li
-          a(href='#') Om
-
+          button(onclick="rdSendPakke()") Send Pakke
+          script.
+            function rdSendPakke() {
+              window.location.href = '/sendPakke';
+            }
   block content
-
   footer 
     p Copyright © 2023 Team Jakob
