@@ -14,11 +14,38 @@ block content
         var formData2 = new FormData(document.getElementById('form2'));
         var formData3 = new FormData(document.getElementById('form3'));
         
-        console.log(formData1);
-        console.log(formData2);
-        console.log(formData3);
-        
+        var combinedFormData = new FormData();
+        for (var pair of formData1.entries()) {
+          combinedFormData.append(pair[0], pair[1]);
+        }
+        for (var pair of formData2.entries()) {
+          combinedFormData.append(pair[0], pair[1]);
+        }
+        for (var pair of formData3.entries()) {
+          combinedFormData.append(pair[0], pair[1]);
+        }
+
+        console.log(combinedFormData)
+        fetch('/sendpakke', {
+          method: 'POST',
+          body: combinedFormData
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.text(); // or response.json() if expecting JSON
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          console.log('Success:', data);
+          // Handle success, e.g., show confirmation to the user
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Handle errors
+        });
       }
+      
     
     //form(action="/sendPakke" method="post")
   .forms-container
