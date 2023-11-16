@@ -7,48 +7,94 @@ block content
 
     //h1 Send Pakke
     //img(src="/images/sendpakkebillede.png", alt="Example Image")
-    br
-    .container
-      form(action="/sendPakke" method="post")
-        label.afsender(for="sName") Afsender Navn:
-        input(type="text" name="sName" required)
-        br
-        label(for="sAdress") Afsender Adresse:
-        input(type="text" name="sAddress" required)
-        br
-        label(for="sEmail") Afsender Email:
-        input(type="email" name="sEmail" required)
-        br
-        label(for="sPhone") Afsender Telefon nummer:
-        input(type="text" name="sPhone" required)
-        br
+ 
+    script.
+      function submitAllForms() { 
+        var formData1 = new FormData(document.getElementById('form1'));
+        var formData2 = new FormData(document.getElementById('form2'));
+        var formData3 = new FormData(document.getElementById('form3'));
+        
+        var combinedFormData = new FormData();
+        for (var pair of formData1.entries()) {
+          combinedFormData.append(pair[0], pair[1]);
+        }
+        for (var pair of formData2.entries()) {
+          combinedFormData.append(pair[0], pair[1]);
+        }
+        for (var pair of formData3.entries()) {
+          combinedFormData.append(pair[0], pair[1]);
+        }
 
-        hr.form-line
+        console.log(combinedFormData)
+        fetch('/sendpakke', {
+          method: 'POST',
+          body: combinedFormData
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.text(); // or response.json() if expecting JSON
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          console.log('Success:', data);
+          // Handle success, e.g., show confirmation to the user
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Handle errors
+        });
+      }
+      
+    
+    //form(action="/sendPakke" method="post")
+  .forms-container
+    form#form1
+      p Afsender Info
+      label(for="sName") Afsender Navn:
+      input(type="text" name="sName" required)
+      br
+      label(for="sAdress") Afsender Adresse:
+      input(type="text" name="sAddress" required)
+      br
+      label(for="sEmail") Afsender Email:
+      input(type="email" name="sEmail" required)
+      br
+      label(for="sPhone") Afsender Telefon nummer:
+      input(type="text" name="sPhone" required)
+      br
+    
+    form#form2
+      p Modtager Info
+      label(for="rName") Modtagers Navn:
+      input(type="text" name="rName" required)
+      br
+      label(for="rAdress") Modtagers Adresse:
+      input(type="text" name="rAddress" required)
+      br
+      label(for="rEmail") Modatagers Email:
+      input(type="email" name="rEmail" required)
+      br
+      label(for="rPhone") Modtager Telefon nummer:
+      input(type="text" name="rPhone" required)
+      br
 
-        br
+    form#form3.box3
+      p Pakke Info
+      label(for="size") længe i cm:
+      input(type="text" name="size" required)
+      br
+      label(for="weight") vægt i kg:
+      input(type="text" name="weight" required)
+      br
+      //input(type="submit" value="Send Den Pakke!!!!!")
 
-        label.modtager(for="rName") Modtagers Navn:
-        input(type="text" name="rName" required)
-        br
-        label(for="rAdress") Modtagers Adresse:
-        input(type="text" name="rAddress" required)
-        br
-        label(for="rEmail") Modatagers Email:
-        input(type="email" name="rEmail" required)
-        br
-        label(for="rPhone") Modtager Telefon nummer:
-        input(type="text" name="rPhone" required)
-        br
+    
+      button(type='button' class='sendpakkeknap' onclick='submitAllForms()') Send Den Pakke!
+       
+      
+      
+    
 
-        hr.form-line
 
-        br 
-
-        label(for="size") længe i cm:
-        input(type="text" name="size" required)
-        br
-        label(for="weight") vægt i kg:
-        input(type="text" name="weight" required)
-        br
-        input(type="submit" value="Send Den Pakke!")
     

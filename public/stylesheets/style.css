@@ -10,6 +10,28 @@ body.sendpakke {
  justify-content: center;*/
  /*height: 100vh;*/
 }
+.forms-container form {
+  position: relative;
+  display: inline-flex;
+  margin-right: 25px; /* Adjust margin between forms */
+  margin-bottom: 125px;
+  margin-top: 150px;
+}
+
+.sendpakkeknap{
+  font-size: medium;
+  
+}
+
+/* Clear floats */
+.forms-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.box3{
+
+}
 .imageContainer{
   position: absolute;
   left: 50px;
