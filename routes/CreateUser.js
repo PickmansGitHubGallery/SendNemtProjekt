@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     db.createUser(req.body.email, req.body.password)
         .then(() => {
-            res.render('Login');
+            res.redirect('/Login')
         })
         .catch((err) => {
             console.error('Error creating user:', err);
