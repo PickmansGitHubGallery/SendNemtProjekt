@@ -3,13 +3,27 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
   body
     header 
       .buttonContainer
-        button(type='button') Opret Bruger
-        button(type='button') Log Ind
+        button(onclick="redirect()") Opret Bruger
+
+        script.
+          function redirect() {
+            window.location.href = '/CreateUser';
+          }
+          
+        button(onclick="redirect2()") Log Ind
+
+        script.
+          function redirect2() {
+            window.location.href = '/Login';
+          }
       .imageContainer
         img(src='images/sendpakkebillede.png', alt='Image Alt Text')
+
+        
       
       nav
       ul
