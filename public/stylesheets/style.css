@@ -25,6 +25,12 @@ body.sendpakke {
   margin-bottom: 500px;
 }
 
+.containerStatistic{
+  width: 500px;
+  height: 500px;
+  padding-left: 37%;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
