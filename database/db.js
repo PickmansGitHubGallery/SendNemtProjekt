@@ -19,7 +19,23 @@ function getCurrentTimestamp() {
     return formattedDateTime;
 
 }
-function getAllPackages(email) {
+function getUserInfo(email) {
+  return new Promise((resolve, reject) => {
+    db.get('SELECT * FROM User WHERE email = ?', [email], async function (err, userData) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(userData);
+      }
+    });
+  });
+}
+
+ 
+
+
+  function getAllPackages(email) {
+
     return new Promise((resolve, reject) => {
       db.all('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
         if (err) {
@@ -131,5 +147,6 @@ module.exports = {
   updateUserDetails,
   getAllPackages, 
   authenticateToken,
-  setAuthenticationToken
+  setAuthenticationToken,
+  getUserInfo
 };
