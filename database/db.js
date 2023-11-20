@@ -146,6 +146,21 @@ function setAuthenticationToken (email)
       }
     );
   });
+
+
+}
+
+function getAllPackagesByAdmin(tlf) {
+
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM Package WHERE sPhone = ? OR rPhone = ?', [tlf,tlf], async function (err,packages) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(packages);
+      }
+    });
+  });
 }
 module.exports = {
   insertPackage,
@@ -155,5 +170,7 @@ module.exports = {
   getAllPackages, 
   authenticateToken,
   setAuthenticationToken,
-  getUserInfo
+  getUserInfo,
+  getAllPackagesByAdmin
+
 };
