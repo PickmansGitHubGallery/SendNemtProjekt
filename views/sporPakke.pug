@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+    h1= title
+    h2 Dit tracking nummer er #{package.hashID} 
+    .sporPakkecontainer
+    .sender
+        h2 Afsender: #{package.sName} 
+        p Telefon nummer: #{package.sPhone}
+        p Email: #{package.sEmail}
+    .receiver
+        h2 Modtager: #{package.rName}
+        p Telefon nummer: #{package.rPhone}
+        p Email: #{package.rEmail}
+    br
+    br
+    h2 Status: #{package.status}
+    h2 Sidst opdateret: #{package.updatedAt}

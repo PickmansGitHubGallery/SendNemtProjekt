@@ -230,3 +230,24 @@ td{
   color: black;
   font-weight: bold;
 }
+
+.sporPakkecontainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sender, .receiver {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.sender {
+  background-color: #b3d4fc;
+}
+
+.receiver {
+  background-color: #c5f6c5;
+}

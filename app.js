@@ -11,6 +11,7 @@ var sendPakkeRouter = require('./routes/sendpakke');
 var minsideRouter = require('./routes/minside');
 var loginRouter = require('./routes/Login');
 var opretBrugerRouter = require('./routes/CreateUser');
+var sporPakkeRouter = require('./routes/sporPakke');
 
 
 
@@ -32,6 +33,7 @@ app.use('/sendpakke',sendPakkeRouter);
 app.use('/minside',minsideRouter);
 app.use('/Login',loginRouter);
 app.use('/CreateUser',opretBrugerRouter);
+app.use('/sporPakke',sporPakkeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
