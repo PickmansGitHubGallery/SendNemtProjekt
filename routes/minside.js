@@ -34,6 +34,7 @@ router.post('/', function(req, res, next) {
   db.updateUserDetails(req.body.email ,req.body.name,req.body.phone,req.body.address)
   .then(() => {
     console.log("Du har opdateret dine oplysninger")
+    res.status(200).send("Opdateret"); // Sending success response back to client
 })
 .catch((err) => {
     console.error("Du er ikke logget ind", err.message)

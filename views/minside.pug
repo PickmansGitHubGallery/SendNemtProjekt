@@ -4,52 +4,43 @@ block content
     h1= title
     h3 Mine oplysninger
     .containerMinside
-        form(action="/minside" method="post")
+        form(id="updateForm", action="/minside", method="post")
             label(for="email") Email:
-            input(type="text" name="email" value= user.email required readonly)
+            input(type="text", name="email", value=user.email, required, readonly)
             label(for="name") Navn:
-            input(type="text" name="name" value= user.name required)
+            input(type="text", name="name", value=user.name, required)
             label(for="address") Adresse:
-            input(type="text" name="address" value= user.address required)
+            input(type="text", name="address", value=user.address, required)
             label(for="phone") Telefon:
-            input(type="text" name="phone" value= user.phone required)
+            input(type="text", name="phone", value=user.phone, required)
             br
             br
-            input(type="submit" value="Gem oplysninger")
-   
+            input(type="submit", value="Gem oplysninger", id="updateDetailsBtn")
+
     h3 Mine pakker
     button Sendte pakker
     button Modtagne pakker
     button Alle pakker
     table
-        tr
-            th Pakke ID
-            th Afsender's Navn
-            th Afsender's Addresse 
-            th Afsender's Email 
-            th Afsender's Telefon 
-            th Modtager's Navn
-            th Modtager's Addresse
-            th Modtager's Email
-            th Modtager's Telefon
-            th Dato for oprettelse
-            th Status 
-            th Sidst opdateret 
-            th Størrelse 
-            th Vægt
-            each package in packages
-                tr
-                td= package.ID
-                td= package.sName
-                td= package.sAddress 
-                td= package.sEmail
-                td= package.sPhone
-                td= package.rName
-                td= package.rAddress
-                td= package.rEmail
-                td= package.rPhone
-                td= package.createdAt 
-                td= package.status
-                td= package.updatedAt
-                td= package.size
-                td= package.weight
+        // Table content here...
+
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script.
+        $(document).ready(function() {
+            $('#updateForm').submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                $.ajax({
+                    url: '/minside', // Replace with your actual POST route
+                    method: 'POST',
+                    data: $('#updateForm').serialize(), // Serialize the form data
+                    success: function(response) {
+                        alert('Opdateret'); // Display a popup message on success
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error); // Log errors
+                        // Handle error cases if needed
+                    }
+                });
+                return false; // Ensure the form doesn't submit normally
+            });
+        });
