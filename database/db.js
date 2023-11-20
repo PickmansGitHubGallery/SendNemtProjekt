@@ -130,7 +130,6 @@ function authenticateToken (token)
   })
   });
 }
-
 function getPackage(hashID){
   return new Promise((resolve, reject) => {
     db.get('SELECT * FROM Package WHERE hashID = ?', [hashID], async function (err, packageData) {
@@ -178,6 +177,21 @@ function getAllPackagesByAdmin(tlf) {
     });
   });
 }
+function getPackageByID(ID){
+  return new Promise((resolve, reject) => {
+    db.get('SELECT * FROM Package WHERE ID = ?', [ID], async function (err, packageData) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      if (!packageData) {
+        reject(new Error('Package not found'));
+        return;
+      }
+      resolve(packageData);
+  })
+  });
+}
 module.exports = {
   insertPackage,
   createUser,
@@ -188,5 +202,6 @@ module.exports = {
   setAuthenticationToken,
   getUserInfo,
   getAllPackagesByAdmin,
-  getPackage
+  getPackage,
+  getPackageByID
 };

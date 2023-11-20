@@ -13,6 +13,7 @@ var loginRouter = require('./routes/Login');
 var opretBrugerRouter = require('./routes/CreateUser');
 var adminRouter = require('./routes/admin');
 var sporPakkeRouter = require('./routes/sporPakke');
+var pakkeRouter = require('./routes/pakke');
 
 
 
@@ -37,6 +38,7 @@ app.use('/Login',loginRouter);
 app.use('/CreateUser',opretBrugerRouter);
 app.use('/admin', adminRouter);
 app.use('/sporPakke',sporPakkeRouter);
+app.use('/admin/pakke',pakkeRouter);
 
 
 // catch 404 and forward to error handler

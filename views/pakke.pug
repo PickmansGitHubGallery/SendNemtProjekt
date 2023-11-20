@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    form(action=`/admin/pakke/${package.ID}`, method="post" id="sendpakke")
+      .form-columns
+        .column
+          h2 Afsender
+          label(for="sName") Navn
+          input(type="text", id="sName", name="sName" value=package.sName)
+          label(for="sEmail") Email
+          input(type="email", id="sEmail", name="sEmail" value=package.sEmail)
+          label(for="sAddress") Adresse
+          input(type="text", id="sAddress", name="sAddress" value=package.sAddress)
+          label(for="sPhone") Telefon
+          input(type="tel", id="sPhone", name="sPhone" value=package.sPhone)
+        .column
+          h2 Modtager
+          label(for="rName") Navn
+          input(type="text", id="rName", name="rName" value=package.rName)
+          label(for="rEmail") Email
+          input(type="email", id="rEmail", name="rEmail" value=package.rEmail)
+          label(for="rAddress") Adresse
+          input(type="text", id="rAddress", name="rAddress" value=package.rAddress)
+          label(for="rPhone") Telefon
+          input(type="tel", id="rPhone", name="rPhone" value=package.rPhone)
+        .column
+          h2 Pakke info
+          label(for="size") Længde
+          input(type="text", id="size", name="size" value=package.size)
+          label(for="weight") Vægt
+          input(type="number", id="weight", name="weight" value=package.weight)
+      button(type="submit") Opdater
+    

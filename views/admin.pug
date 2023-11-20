@@ -1,14 +1,16 @@
 extends layout
 
 block content
-    .container
+  .forside
+    .boxed-paragraph
       form(action="/admin" method="post")
         input(type="text" name="tlf" required)
         br
         br
         input(type="submit" value="find pakke")
-
-
-
-    each package in packages
-        p= package.sName
+  
+  
+  each package in packages
+       p= package.sName + " " + package.sAddress + " " + package.sPhone + " " + package.sEmail
+        a(href='/admin/pakke/' + package.ID)
+          img(src='images/rediger.png', alt='Image Alt Text')
