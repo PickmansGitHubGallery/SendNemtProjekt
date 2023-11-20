@@ -8,8 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async (req, res) => {
-  console.log("Form submitted");
-  console.log(req.body);
     const { sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight } = req.body;
     try {
       const packageID = await db.insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight);
