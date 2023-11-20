@@ -52,7 +52,15 @@ function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail,
       if (err) {
         reject(err);
       } else {
-        resolve(this.lastID);
+        var hashID = hashPassword(this.lastID.toString());
+        db.run('UPDATE Package SET hashID = ? WHERE id = ?', [hashID, this.lastID], function (err) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(hashID);
+          }
+        });
+        resolve(hashID);
       }
     });
   });
@@ -80,7 +88,6 @@ function authenticateUser(email, password) {
         reject(new Error('User not found'));
         return;
       }
-
       // Hash the entered password
       const enteredPasswordHash = hashPassword(password);
 
