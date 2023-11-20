@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     db.authenticateToken(token)
   .then((userData) => {
     user = userData;
-    db.getAllPackages(user.email)
+    db.getAllPackagesByEmail(user.email)
   .then((packages) => {
     res.render('minside', { title: 'Min side', packages: packages, user: user});
   })

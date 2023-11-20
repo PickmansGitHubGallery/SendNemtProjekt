@@ -8,13 +8,13 @@ block content
         .column
           h2 Afsender
           label(for="sName") Navn
-          input(type="text", id="sName", name="sName")
+          input(type="text", id="sName", name="sName" value=user.name)
           label(for="sEmail") Email
-          input(type="email", id="sEmail", name="sEmail")
+          input(type="email", id="sEmail", name="sEmail" value=user.email)
           label(for="sAddress") Adresse
-          input(type="text", id="sAddress", name="sAddress")
+          input(type="text", id="sAddress", name="sAddress" value=user.address)
           label(for="sPhone") Telefon
-          input(type="tel", id="sPhone", name="sPhone")
+          input(type="tel", id="sPhone", name="sPhone" value =user.phone)
         .column
           h2 Modtager
           label(for="rName") Navn

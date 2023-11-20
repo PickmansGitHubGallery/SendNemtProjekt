@@ -16,13 +16,53 @@ block content
             br
             br
             input(type="submit", value="Gem oplysninger", id="updateDetailsBtn")
+        h3 Mine pakker
+        button Sendte pakker
+        button Modtagne pakker
+        button Alle pakker
 
-    h3 Mine pakker
-    button Sendte pakker
-    button Modtagne pakker
-    button Alle pakker
-    table
-        // Table content here...
+    .admin
+        table
+            thead
+                tr
+                th Afsender Navn
+                th Afsender Adresse
+                th Afsender Telefon
+                th Afsender Email
+                th Modtager Name
+                th Modtager Adresse
+                th Modtager Telefon
+                th Modtager Email
+                th Pakke Vægt (kg)
+                th Pakke Højde (cm)
+                th Tracking Nummer
+            tbody
+                each package in packages
+                    tr
+                        td= package.sName
+                        td= package.sAddress
+                        td= package.sPhone
+                        td= package.sEmail
+                        td= package.rName
+                        td= package.rAddress
+                        td= package.rPhone
+                        td= package.rEmail
+                        td= package.weight
+                        td= package.size
+                        td
+                            input(type="text" value=package.hashID readonly style="display: none;")
+                            button(type="button" onclick="copyText(this)") Kopier  
+    script.
+        function copyText(button) {
+            const copyText = button.previousElementSibling;
+            navigator.clipboard.writeText(copyText.value)
+            .then(() => {
+                button.innerHTML = 'Kopieret!';
+            })
+            .catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        }     
 
     script(src="https://code.jquery.com/jquery-3.6.0.min.js")
     script.

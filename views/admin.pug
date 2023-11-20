@@ -1,16 +1,44 @@
 extends layout
 
 block content
-  .forside
-    .boxed-paragraph
+  .admin
+    .form-box
       form(action="/admin" method="post")
-        input(type="text" name="tlf" required)
-        br
-        br
-        input(type="submit" value="find pakke")
-  
-  
-  each package in packages
-       p= package.sName + " " + package.sAddress + " " + package.sPhone + " " + package.sEmail
-        a(href='/admin/pakke/' + package.ID)
-          img(src='images/rediger.png', alt='Image Alt Text')
+        .radio-container
+          input(type="radio" name="inputType" value="phone" id="phoneInput" checked)
+          label(for="phoneInput") TLF
+          input(type="radio" name="inputType" value="email" id="emailInput")
+          label(for="emailInput") Email
+          input(type="radio" name="inputType" value="packageID" id="packageIDInput")
+          label(for="packageIDInput") PakkeID
+          
+        input(type="text" name="inputText" required)
+        input.submit-button(type="submit" value="Find Pakke")
+    table
+      thead
+        tr
+        th Afsender Navn
+        th Afsender Adresse
+        th Afsender Telefon
+        th Afsender Email
+        th Modtager Name
+        th Modtager Adresse
+        th Modtager Telefon
+        th Modtager Email
+        th Pakke Vægt (kg)
+        th Pakke Højde (cm)
+      tbody
+      each package in packages
+        tr
+          td= package.sName
+          td= package.sAddress
+          td= package.sPhone
+          td= package.sEmail
+          td= package.rName
+          td= package.rAddress
+          td= package.rPhone
+          td= package.rEmail
+          td= package.weight
+          td= package.size
+          td
+            a.button(href='/admin/pakke/' + package.ID) Se pakke

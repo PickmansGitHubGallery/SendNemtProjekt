@@ -30,12 +30,7 @@ function getUserInfo(email) {
     });
   });
 }
-
- 
-
-
-  function getAllPackages(email) {
-
+  function getAllPackagesByEmail(email) {
     return new Promise((resolve, reject) => {
       db.all('SELECT * FROM Package WHERE sEmail = ? OR rEmail = ?', [email,email], async function (err,packages) {
         if (err) {
@@ -45,7 +40,7 @@ function getUserInfo(email) {
         }
       });
     });
-  }
+}
 function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone,size,weight) {
   return new Promise((resolve, reject) => {
     db.run('INSERT INTO Package (sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, createdAt, status, updatedAt,size,weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)', [sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, getCurrentTimestamp(), 'SENT', getCurrentTimestamp(),size,weight ], function (err) {
@@ -130,7 +125,7 @@ function authenticateToken (token)
   })
   });
 }
-function getPackage(hashID){
+function getPackageByHash(hashID){
   return new Promise((resolve, reject) => {
     db.get('SELECT * FROM Package WHERE hashID = ?', [hashID], async function (err, packageData) {
       if (err) {
@@ -145,7 +140,6 @@ function getPackage(hashID){
   })
   });
 }
-
 function setAuthenticationToken (email)
 {
   let tokenhash = hashPassword(email);
@@ -161,12 +155,8 @@ function setAuthenticationToken (email)
       }
     );
   });
-
-
 }
-
-function getAllPackagesByAdmin(tlf) {
-
+function getAllPackagesByPhone(tlf) {
   return new Promise((resolve, reject) => {
     db.all('SELECT * FROM Package WHERE sPhone = ? OR rPhone = ?', [tlf,tlf], async function (err,packages) {
       if (err) {
@@ -197,11 +187,11 @@ module.exports = {
   createUser,
   authenticateUser,
   updateUserDetails,
-  getAllPackages, 
   authenticateToken,
   setAuthenticationToken,
   getUserInfo,
-  getAllPackagesByAdmin,
-  getPackage,
-  getPackageByID
+  getAllPackagesByEmail,
+  getPackageByHash,
+  getPackageByID,
+  getAllPackagesByPhone
 };

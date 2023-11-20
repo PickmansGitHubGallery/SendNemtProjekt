@@ -19,6 +19,13 @@ html
           function rdLogin() {
             window.location.href = '/Login';
           }
+        button(onclick="deleteCookie('token')") Log ud 
+        script.
+          function deleteCookie(cookieName) {
+            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+            alert(`Cookie '${cookieName}' deleted!`);
+            location.reload();
+          }
       nav
       ul
         li

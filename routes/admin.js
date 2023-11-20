@@ -2,20 +2,55 @@ var express = require('express');
 var router = express.Router();
 const db = require('../database/db.js');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('admin', { title: 'Admin side', packages: [] });
-
+  let user = null;
+  let token = req.cookies.token;
+  if (!token) {
+    return res.redirect('/login');
+  }
+  db.authenticateToken(token)
+    .then((userData) => {
+      user = userData;
+      if(user.admin ===1)
+      {
+        res.render('admin', { title: 'Admin side', packages: [] });
+      }
+      else res.render('index', { title: 'Send Nemt' });
+    })
+    .catch((err) => {
+      console.error("Du er ikke logget ind", err.message);
+      res.redirect('/login');
+    });
 });
 router.post('/', function(req, res, next){
-    db.getAllPackagesByAdmin(req.body.tlf)
-    .then((packages) => {
+    const inputType = req.body.inputType;
+    const inputText = req.body.inputText;
+    if (inputType === 'phone') {
+      db.getAllPackagesByPhone(inputText)
+      .then((packages) => {
         res.render('admin', { packages: packages });
-
       })
       .catch((err) => {
         console.error("Ingen pakker fundet", err.message)
     }) 
+    } else if (inputType === 'email') {
+      db.getAllPackagesByEmail(inputText)
+      .then((packages) => {
+        res.render('admin', { packages: packages });
+      })
+      .catch((err) => {
+        console.error("Ingen pakker fundet", err.message)
+    }) 
+    } else if (inputType === 'packageID') {
+      db.getAllPackagesByHash(inputText)
+      .then((packages) => {
+        res.render('admin', { packages: packages });
+      })
+      .catch((err) => {
+        console.error("Ingen pakker fundet", err.message)
+    }) 
+    }
+    
 })
 module.exports = router;
 
