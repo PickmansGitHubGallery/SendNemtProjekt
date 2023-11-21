@@ -207,6 +207,30 @@ function getPackageByID(ID){
   })
   });
 }
+function getAllPackagesBySenderEmail(email) {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM Package WHERE sEmail = ?', [email], async function (err,packages) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(packages);
+      }
+    });
+  });
+  
+}
+function getAllPackagesByReciverEmail(email) {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM Package WHERE rEmail = ?', [email], async function (err,packages) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(packages);
+      }
+    });
+  });
+  
+}
 module.exports = {
   insertPackage,
   createUser,
@@ -219,7 +243,8 @@ module.exports = {
   getPackageByHash,
   getPackageByID,
   getAllPackagesByPhone,
+  getAllPackagesBySenderEmail,
   updatePackage,
-  deletePackage
-
+  deletePackage,
+  getAllPackagesByReciverEmail
 };

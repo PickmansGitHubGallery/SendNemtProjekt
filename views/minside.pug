@@ -3,6 +3,8 @@ extends layout
 block content
     h1= title
     h3 Mine oplysninger
+
+    
     .containerMinside
         form(id="updateForm", action="/minside", method="post")
             label(for="email") Email:
@@ -17,9 +19,13 @@ block content
             br
             input(type="submit", value="Gem oplysninger", id="updateDetailsBtn")
         h3 Mine pakker
-        button Sendte pakker
-        button Modtagne pakker
-        button Alle pakker
+        form(action="/minside/sendte", method="post")
+            button(type="submit") Sendte pakker
+        form(action="/minside/modtagne", method="post")
+            button(type="submit") Modtagne pakker
+        form(action="/minside/alle", method="post")
+            button(type="submit") Alle pakker
+
 
     .admin
         table
@@ -84,3 +90,27 @@ block content
                 return false; // Ensure the form doesn't submit normally
             });
         });
+        // Your other Pug content
+    script.
+        // JavaScript code for handling button clicks
+        document.getElementById('sendtePakker').addEventListener('click', function() {
+            // Replace this with the actions for 'sendtePakker' button click
+            console.log('Sendte pakker button clicked!');
+            
+            // Perform actions specific to the 'sendtePakker' button click
+        });
+
+        document.getElementById('modtagnePakker').addEventListener('click', function() {
+            // Replace this with the actions for 'modtagnePakker' button click
+            console.log('Modtagne pakker button clicked!');
+            // Perform actions specific to the 'modtagnePakker' button click
+        });
+
+        document.getElementById('allePakker').addEventListener('click', function() {
+            // Replace this with the actions for 'allePakker' button click
+            console.log('Alle pakker button clicked!');
+            // Perform actions specific to the 'allePakker' button click
+        });
+
+
+
