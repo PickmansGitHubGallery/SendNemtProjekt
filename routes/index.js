@@ -8,9 +8,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async (req, res) => {
-  db.getPackageByHash(req.body.pakkeNR).then((package) => {
+  try {
+    const package = await db.getPackageByHash(req.body.pakkeNR);
     res.render('sporPakke', { title: 'Spor pakke', package: package});
-  });
+  } catch (err) {
+    console.error('Internal Error:', err);
+    res.send(`<script>alert('Pakken eksistere ikke, prøv igen.'); window.location='/';</script>`);
+  }
 });
 
 module.exports = router;
