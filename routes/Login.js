@@ -38,9 +38,13 @@ router.post('/', function(req, res, next) {
         });
     })
     .catch((err) => {
-      console.error("Du er ikke logget ind", err.message);
+
+            console.error("Du er ikke logget ind", err.message)
+            res.status(401).send('Invalid credentials');
+        }) 
+
     });
-});
+
 
 module.exports = router;
   
