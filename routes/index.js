@@ -17,4 +17,15 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/api/:id',async (req,res) =>{
+  db.getPackageByID(req.params.id).then((package) => {
+  res.json(package)
+  })
+  .catch((err) => {
+    console.error('fejl', err.message)
+  });
+
+});
+
+
 module.exports = router;
