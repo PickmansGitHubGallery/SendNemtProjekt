@@ -7,4 +7,6 @@ router.get('/', function(req, res, next) {
     res.render('sporPakke', { title: 'Spor pakke'});
   });
 
+  
+  
 module.exports = router;
