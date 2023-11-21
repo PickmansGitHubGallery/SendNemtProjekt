@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async (req, res) => {
-  db.getPackage(req.body.pakkeNR).then((package) => {
+  db.getPackageByHash(req.body.pakkeNR).then((package) => {
     res.render('sporPakke', { title: 'Spor pakke', package: package});
   });
 });
