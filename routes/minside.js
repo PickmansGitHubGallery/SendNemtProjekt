@@ -39,8 +39,11 @@ router.post('/', function(req, res, next) {
 .catch((err) => {
     console.error("Du er ikke logget ind", err.message)
 }) 
-
-
 });
+router.get('/'), function(req, res, next){
+  db.getAllPackagesBySenderEmail(user.email)
+  .then((packages) => 
+    res.render('minside', { title: 'Min side', packages: packages, user: user}
+  });
 
 module.exports = router;

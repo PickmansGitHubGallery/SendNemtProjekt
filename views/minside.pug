@@ -17,9 +17,9 @@ block content
             br
             input(type="submit", value="Gem oplysninger", id="updateDetailsBtn")
         h3 Mine pakker
-        button Sendte pakker
-        button Modtagne pakker
-        button Alle pakker
+        button#sendtePakker Sendte pakker
+        button#modtagnePakker Modtagne pakker
+        button#allePakker Alle pakker
 
     .admin
         table
@@ -84,3 +84,27 @@ block content
                 return false; // Ensure the form doesn't submit normally
             });
         });
+        // Your other Pug content
+    script.
+        // JavaScript code for handling button clicks
+        document.getElementById('sendtePakker').addEventListener('click', function() {
+            // Replace this with the actions for 'sendtePakker' button click
+            console.log('Sendte pakker button clicked!');
+            
+            // Perform actions specific to the 'sendtePakker' button click
+        });
+
+        document.getElementById('modtagnePakker').addEventListener('click', function() {
+            // Replace this with the actions for 'modtagnePakker' button click
+            console.log('Modtagne pakker button clicked!');
+            // Perform actions specific to the 'modtagnePakker' button click
+        });
+
+        document.getElementById('allePakker').addEventListener('click', function() {
+            // Replace this with the actions for 'allePakker' button click
+            console.log('Alle pakker button clicked!');
+            // Perform actions specific to the 'allePakker' button click
+        });
+
+
+

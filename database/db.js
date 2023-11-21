@@ -182,6 +182,17 @@ function getPackageByID(ID){
   })
   });
 }
+function getAllPackagesBySenderEmail(email) {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM Package WHERE sEmail = ?', [email], async function (err,packages) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(packages);
+      }
+    });
+  });
+}
 module.exports = {
   insertPackage,
   createUser,
@@ -193,5 +204,6 @@ module.exports = {
   getAllPackagesByEmail,
   getPackageByHash,
   getPackageByID,
-  getAllPackagesByPhone
+  getAllPackagesByPhone,
+  getAllPackagesBySenderEmail
 };
