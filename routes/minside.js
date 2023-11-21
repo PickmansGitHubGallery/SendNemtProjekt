@@ -40,10 +40,44 @@ router.post('/', function(req, res, next) {
     console.error("Du er ikke logget ind", err.message)
 }) 
 });
-router.get('/'), function(req, res, next){
+
+router.post('/sendte', function(req, res, next){
+  console.log("Tryk på knap");
+  let token = req.cookies.token;
+  if (token) {
+    db.authenticateToken(token)
+  .then((userData) => {
+    user = userData;
   db.getAllPackagesBySenderEmail(user.email)
-  .then((packages) => 
-    res.render('minside', { title: 'Min side', packages: packages, user: user}
-  });
+  .then((packages) => {
+    res.render('minside', { title: 'Min side', packages: packages, user: user});
+  })})};
+});
+
+router.post('/modtagne', function(req, res, next){
+  console.log("Tryk på knap");
+  let token = req.cookies.token;
+  if (token) {
+    db.authenticateToken(token)
+  .then((userData) => {
+    user = userData;
+  db.getAllPackagesByReciverEmail(user.email)
+  .then((packages) => {
+    res.render('minside', { title: 'Min side', packages: packages, user: user});
+  })})};
+});
+
+router.post('/alle', function(req, res, next){
+  let token = req.cookies.token;
+  if (token) {
+    db.authenticateToken(token)
+  .then((userData) => {
+    user = userData;
+  db.getAllPackagesByEmail(user.email)
+  .then((packages) => {
+    res.render('minside', { title: 'Min side', packages: packages, user: user});
+  })})};
+  
+});
 
 module.exports = router;

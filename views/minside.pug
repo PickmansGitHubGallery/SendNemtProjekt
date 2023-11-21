@@ -3,6 +3,8 @@ extends layout
 block content
     h1= title
     h3 Mine oplysninger
+
+    
     .containerMinside
         form(id="updateForm", action="/minside", method="post")
             label(for="email") Email:
@@ -17,9 +19,13 @@ block content
             br
             input(type="submit", value="Gem oplysninger", id="updateDetailsBtn")
         h3 Mine pakker
-        button#sendtePakker Sendte pakker
-        button#modtagnePakker Modtagne pakker
-        button#allePakker Alle pakker
+        form(action="/minside/sendte", method="post")
+            button(type="submit") Sendte pakker
+        form(action="/minside/modtagne", method="post")
+            button(type="submit") Modtagne pakker
+        form(action="/minside/alle", method="post")
+            button(type="submit") Alle pakker
+
 
     .admin
         table
