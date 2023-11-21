@@ -13,29 +13,17 @@ router.get('/:id', function(req, res, next) {
   });
   });
 
-router.post('/:ID', function(req, res, next){
-    const id = req.params.ID; // Access the ID from the URL
-    console.log("Package ID:", id);
-    db.getAllPackagesByAdmin(req.body.sEmail)
-    .then((packages) => {
-        res.render('admin', { packages: packages });
-      })
-      .catch((err) => {
-        console.error("Ingen pakker fundet", err.message)
-    }) 
-  })
-router.delete('/pakke/:id', function(req, res, next) {
-    const packageId = req.params.id;
-    //slet pakke
-    console.log("slet pakke virker");
-    db.deletePackage(packageId)
-    .then((package) => {
-      res.redirect('/admin');
-    })
-    .catch((err) => {
-      console.error("Ingen pakker fundet", err.message)
-  });
-  });
- 
- 
+router.post('/:id', function(req, res, next) {
+    const id = req.params.id; // Access the ID from the URL
+    const { sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight } = req.body;
+    console.log("UPDATE", id);
+    db.updatePackage(id, sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight)
+        .then(() => {
+            res.render('admin', { packages: [] });
+        })
+        .catch((err) => {
+            console.error("Error updating package:", err.message);
+            res.status(500).send("Error updating package");
+        });
+});
   module.exports = router;

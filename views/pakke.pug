@@ -30,4 +30,6 @@ block content
           label(for="weight") Vægt
           input(type="number", id="weight", name="weight" value=package.weight)
       button(type="submit") Opdater
-    
+   
+    form(action=`/admin/delete/${package.ID}`, method="post", id="deleteForm")
+      button(type="submit") Slet Pakke

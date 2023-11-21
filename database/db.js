@@ -60,6 +60,31 @@ function insertPackage(sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail,
     });
   });
 }
+function updatePackage(ID, sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight) {
+  return new Promise((resolve, reject) => {
+    db.run('UPDATE Package SET sName = ?, sAddress = ?, sEmail = ?, sPhone = ?, rName = ?, rAddress = ?, rEmail = ?, rPhone = ?, size = ?, weight = ? WHERE id = ?',
+      [sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight, ID],
+      function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve("Package updated successfully");
+        }
+      });
+  });
+}
+function deletePackage(ID) {
+  return new Promise((resolve, reject) => {
+    db.run('DELETE FROM Package WHERE ID = ?', [ID], function (err) {
+      if (err) { 
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
 function createUser(email, password) {
 let hashWord = hashPassword(password);
   return new Promise((resolve, reject) => {
@@ -205,5 +230,7 @@ module.exports = {
   getPackageByHash,
   getPackageByID,
   getAllPackagesByPhone,
-  getAllPackagesBySenderEmail
+  getAllPackagesBySenderEmail,
+  updatePackage,
+  deletePackage
 };

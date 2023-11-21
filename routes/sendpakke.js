@@ -21,7 +21,6 @@ router.get('/', function(req, res, next) {
   }
 });
 
-
 router.post('/', async (req, res) => {
     const { sName, sAddress, sEmail, sPhone, rName, rAddress, rEmail, rPhone, size, weight } = req.body;
     try {
