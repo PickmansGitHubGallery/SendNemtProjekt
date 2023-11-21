@@ -15,29 +15,3 @@ block content
         br
         br
         input(type="submit", value="login")
-      script.
-        document.addEventListener('DOMContentLoaded', function() {
-          document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            const formData = new FormData(this);
-
-            fetch('/Login', {
-              method: 'POST',
-              body: formData
-            })
-            .then(response => {
-              if (response.ok) {
-                alert('Du er nu logget ind!'); // Display a popup message on success
-                // Redirect to a new page or perform other actions if needed
-                window.location.href = '/'; // Redirect to homepage
-              } else {
-                throw new Error('Network response was not ok');
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              alert('Log ind fejlede.Prøv igen.'); // Display a popup message on error
-              // You can add more specific error handling or UI changes here
-            });
-          });
-        });
