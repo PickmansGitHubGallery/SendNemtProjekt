@@ -42,7 +42,7 @@ router.post('/', function(req, res, next){
         console.error("Ingen pakker fundet", err.message)
     }) 
     } else if (inputType === 'packageID') {
-      db.getAllPackagesByHash(inputText)
+      db.getPackagesByHash(inputText)
       .then((packages) => {
         res.render('admin', { packages: packages });
       })
