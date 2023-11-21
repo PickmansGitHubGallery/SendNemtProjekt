@@ -52,6 +52,17 @@ router.post('/', function(req, res, next){
     }
     
 })
+router.post('/delete/:id', function(req, res, next) {
+  const packageId = req.params.id;
+  console.log("DELETE", packageId);
+  db.deletePackage(packageId)
+  .then((e) => {
+    res.redirect('/admin');
+  })
+  .catch((err) => {
+    console.error("Ingen pakker fundet", err.message)
+});
+});
 module.exports = router;
 
 
