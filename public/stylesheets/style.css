@@ -317,3 +317,14 @@ input[type="submit"]:hover {
 }
 /* Admin siden slut
 ---------------------------------------------------------------------*/
+.inline-forms {
+  display: flex;
+  gap: 10px; 
+}
+.inline-forms form {
+  display: flex;
+}
+
+.inline-forms button {
+  margin: 0; /
+}

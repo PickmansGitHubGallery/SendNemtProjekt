@@ -19,12 +19,14 @@ block content
             br
             input(type="submit", value="Gem oplysninger", id="updateDetailsBtn")
         h3 Mine pakker
-        form(action="/minside/sendte", method="post")
-            button(type="submit") Sendte pakker
-        form(action="/minside/modtagne", method="post")
-            button(type="submit") Modtagne pakker
-        form(action="/minside/alle", method="post")
-            button(type="submit") Alle pakker
+            br
+    .inline-forms 
+            form(action="/minside/sendte", method="post")
+                button(type="submit") Sendte pakker
+            form(action="/minside/modtagne", method="post")
+                button(type="submit") Modtagne pakker
+            form(action="/minside/alle", method="post")
+                button(type="submit") Alle pakker
 
 
     .admin
