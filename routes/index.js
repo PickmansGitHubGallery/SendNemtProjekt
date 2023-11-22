@@ -9,7 +9,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async (req, res) => {
   try {
-    const package = await db.getPackageByHash(req.body.pakkeNR);
+    const package = await db.getOnePackageByHash(req.body.pakkeNR);
+    if (!package){
+      res.send(`<script>alert('Pakken eksistere ikke, prøv igen.'); window.location='/';</script>`);
+    }
     res.render('sporPakke', { title: 'Spor pakke', package: package});
   } catch (err) {
     console.error('Internal Error:', err);

@@ -41,7 +41,7 @@ router.post('/', function(req, res, next) {
 }) 
 });
 
-router.post('/sendte', function(req, res, next){
++router.post('/sendte', function(req, res, next){
   console.log("Tryk på knap");
   let token = req.cookies.token;
   if (token) {

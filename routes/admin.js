@@ -42,7 +42,7 @@ router.post('/', function(req, res, next){
         console.error("Ingen pakker fundet", err.message)
     }) 
     } else if (inputType === 'packageID') {
-      db.getPackagesByHash(inputText)
+      db.getPackageByHash(inputText)
       .then((packages) => {
         res.render('admin', { packages: packages });
       })
@@ -51,7 +51,7 @@ router.post('/', function(req, res, next){
     }) 
     }
     
-})
+});
 router.post('/delete/:id', function(req, res, next) {
   const packageId = req.params.id;
   console.log("DELETE", packageId);
